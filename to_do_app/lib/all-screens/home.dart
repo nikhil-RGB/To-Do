@@ -6,6 +6,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: alternative,
       appBar: buildBar(),
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -28,6 +29,9 @@ class Home extends StatelessWidget {
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             )),
         item(),
+        item(),
+        item(),
+        item(),
       ]),
     );
   }
@@ -37,7 +41,7 @@ class Home extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        color: tdBGColor,
+        color: tdGrey,
         borderRadius: BorderRadius.circular(25),
       ),
       child: TextField(
@@ -50,7 +54,7 @@ class Home extends StatelessWidget {
           ),
           border: InputBorder.none,
           hintText: 'Search To-Do here',
-          hintStyle: TextStyle(color: tdGrey),
+          hintStyle: TextStyle(color: tdBlack),
         ),
       ),
     );
