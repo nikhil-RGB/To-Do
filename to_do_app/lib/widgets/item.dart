@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/all-const/colors.dart';
+import 'package:to_do_app/model/itemToDo.dart';
 
 class item extends StatelessWidget {
+  final itemToDo todo;
+  const item({Key? key, required this.todo}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +19,7 @@ class item extends StatelessWidget {
             Icons.check_box,
             color: tdBlue,
           ),
-          title: Text('Do this Task',
+          title: Text(todo.text!,
               style: TextStyle(
                 fontSize: 16,
                 color: tdBlack,

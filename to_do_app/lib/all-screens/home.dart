@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/all-const/colors.dart';
+import 'package:to_do_app/model/itemToDo.dart';
 import 'package:to_do_app/widgets/item.dart';
 
 class Home extends StatelessWidget {
+  final List<itemToDo> list = itemToDo.generateDefaultList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +31,7 @@ class Home extends StatelessWidget {
               "To-Do Items!",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             )),
-        item(),
-        item(),
-        item(),
-        item(),
+        for (itemToDo todo1 in list) item(todo: todo1)
       ]),
     );
   }
