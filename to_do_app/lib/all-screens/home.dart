@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/all-const/colors.dart';
+import 'package:to_do_app/widgets/item.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -9,8 +10,25 @@ class Home extends StatelessWidget {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
-            children: [createSearcher()],
+            children: [
+              createSearcher(),
+              createYAxisList(),
+            ],
           )),
+    );
+  }
+
+  Expanded createYAxisList() {
+    return Expanded(
+      child: ListView(children: [
+        Container(
+            margin: EdgeInsets.only(top: 50, bottom: 20),
+            child: Text(
+              "To-Do Items!",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+            )),
+        item(),
+      ]),
     );
   }
 
