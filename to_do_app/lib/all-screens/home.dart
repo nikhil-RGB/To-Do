@@ -62,6 +62,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: alternative,
       appBar: buildBar(),
+      //appBar: AppBar(),
       body: Stack(children: [
         Container(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -116,7 +117,7 @@ class _HomeState extends State<Home> {
                 onPressed: () => handleItemAddition(_to_do_Controller.text),
                 child: Text('+', style: new TextStyle(fontSize: 35)),
                 style: ElevatedButton.styleFrom(
-                  primary: tdGrey,
+                  primary: tdBlue,
                   minimumSize: Size(50, 50),
                   elevation: 10,
                 ),
@@ -149,7 +150,7 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        color: tdGrey,
+        color: tdBGColor,
         borderRadius: BorderRadius.circular(25),
       ),
       child: TextField(
@@ -179,7 +180,7 @@ class _HomeState extends State<Home> {
           children: [
             Icon(
               Icons.menu,
-              color: tdBlack,
+              color: tdBlue,
               size: 30,
             ),
             Container(
