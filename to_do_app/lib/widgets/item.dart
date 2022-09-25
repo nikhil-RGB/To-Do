@@ -44,7 +44,7 @@ class item extends StatelessWidget {
               color: tdBGColor,
               iconSize: 18,
               icon: Icon(Icons.delete),
-              onPressed: () => {},
+              onPressed: () => {onItemDeletion(todo.ID)},
             ),
           ),
         ));

@@ -25,4 +25,13 @@ class itemToDo {
       ),
     ];
   }
+
+  static bool searchForIn(String id, List<itemToDo> items) {
+    for (itemToDo item in items) {
+      if (item.ID == id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -11,7 +11,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final List<itemToDo> list = itemToDo.generateDefaultList();
 
-  void handleItemDeletion() {}
+  void handleItemDeletion(String item_id) {
+    setState(() => {list.removeWhere((element) => element.ID == item_id)});
+  }
 
   void handleToDoItemChange(itemToDo item) {
     setState(() {
