@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
                 createYAxisList(),
               ],
             )),
-        //createAlign()
+        createAlign()
       ]),
     );
   }
@@ -36,6 +36,7 @@ class Home extends StatelessWidget {
                     right: 20,
                     left: 20,
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: const [
@@ -47,7 +48,27 @@ class Home extends StatelessWidget {
                       )
                     ],
                     borderRadius: BorderRadius.circular(20),
-                  )))
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Enter new ToDo task here',
+                      border: InputBorder.none,
+                    ),
+                  ))),
+          Container(
+              margin: EdgeInsets.only(
+                bottom: 20,
+                right: 20,
+              ),
+              child: ElevatedButton(
+                onPressed: () => {},
+                child: Text('+', style: new TextStyle(fontSize: 35)),
+                style: ElevatedButton.styleFrom(
+                  primary: tdGrey,
+                  minimumSize: Size(50, 50),
+                  elevation: 10,
+                ),
+              )),
         ]));
   }
 
