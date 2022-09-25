@@ -3,8 +3,21 @@ import 'package:to_do_app/all-const/colors.dart';
 import 'package:to_do_app/model/itemToDo.dart';
 import 'package:to_do_app/widgets/item.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final List<itemToDo> list = itemToDo.generateDefaultList();
+
+  void handleItemDeletion() {}
+
+  void handleToDoItemChange(itemToDo item) {
+    setState(() {
+      item.isDone = !item.isDone;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +94,12 @@ class Home extends StatelessWidget {
               "To-Do Items!",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             )),
-        for (itemToDo todo1 in list) item(todo: todo1)
+        for (itemToDo todo1 in list)
+          item(
+            todo: todo1,
+            onItemChanged: handleToDoItemChange,
+            onItemDeletion: handleItemDeletion,
+          )
       ]),
     );
   }

@@ -3,15 +3,22 @@ import 'package:to_do_app/all-const/colors.dart';
 import 'package:to_do_app/model/itemToDo.dart';
 
 class item extends StatelessWidget {
+  final onItemChanged;
+  final onItemDeletion;
   final itemToDo todo;
-  const item({Key? key, required this.todo}) : super(key: key);
+  const item(
+      {Key? key,
+      required this.todo,
+      required this.onItemDeletion,
+      required this.onItemChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(bottom: 20),
         child: ListTile(
-          onTap: () => {},
+          onTap: () => {onItemChanged(todo)},
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           tileColor: tdGrey,
