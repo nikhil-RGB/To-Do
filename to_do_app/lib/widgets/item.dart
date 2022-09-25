@@ -16,14 +16,15 @@ class item extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           tileColor: tdGrey,
           leading: Icon(
-            Icons.check_box,
-            color: tdBlue,
+            todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
+            color: tdBlack,
           ),
           title: Text(todo.text!,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
                 color: tdBlack,
-                decoration: TextDecoration.lineThrough,
+                decoration: todo.isDone ? TextDecoration.lineThrough : null,
               )),
           trailing: Container(
             height: 35,

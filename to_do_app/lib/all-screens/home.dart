@@ -11,15 +11,35 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: alternative,
       appBar: buildBar(),
-      body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            children: [
-              createSearcher(),
-              createYAxisList(),
-            ],
-          )),
+      body: Stack(children: [
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Column(
+              children: [
+                createSearcher(),
+                createYAxisList(),
+              ],
+            )),
+        //createAlign()
+      ]),
     );
+  }
+
+  Align createAlign() {
+    return Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(children: [
+          Expanded(
+              child: Container(
+                  margin: EdgeInsets.only(
+                    bottom: 20,
+                    right: 20,
+                    left: 20,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  )))
+        ]));
   }
 
   Expanded createYAxisList() {
