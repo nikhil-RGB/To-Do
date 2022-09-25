@@ -10,7 +10,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _to_do_Controller = TextEditingController();
+  List<itemToDo> foundits = [];
   final List<itemToDo> list = itemToDo.generateDefaultList();
+
+  @override
+  void initState() {
+    foundits = list;
+    super.initState();
+  }
 
   void handleItemDeletion(String item_id) {
     setState(() => {list.removeWhere((element) => element.ID == item_id)});
@@ -33,6 +40,21 @@ class _HomeState extends State<Home> {
     setState(() {
       item.isDone = !item.isDone;
     });
+  }
+
+  void runFilter(String userEntry) {
+    userEntry = userEntry.trim();
+    List<itemToDo> result = [];
+    if (userEntry.isEmpty) {
+      result = list;
+    } else {
+      result = list
+          .where((element) =>
+              element.text!.toLowerCase().contains(userEntry.toLowerCase()))
+          .toList();
+    }
+
+    setState(() => {foundits = result});
   }
 
   @override
@@ -111,7 +133,8 @@ class _HomeState extends State<Home> {
               "To-Do Items!",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
             )),
-        for (itemToDo todo1 in list)
+        for (itemToDo todo1 in foundits
+            .reversed) //reversed so that that items can follow FILO order, more convenient for the user(I think)
           item(
             todo: todo1,
             onItemChanged: handleToDoItemChange,
@@ -130,6 +153,7 @@ class _HomeState extends State<Home> {
         borderRadius: BorderRadius.circular(25),
       ),
       child: TextField(
+        onChanged: (val) => runFilter(val),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(Icons.search, color: tdBlack, size: 20),
