@@ -9,10 +9,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final _to_do_Controller = TextEditingController();
   final List<itemToDo> list = itemToDo.generateDefaultList();
 
   void handleItemDeletion(String item_id) {
     setState(() => {list.removeWhere((element) => element.ID == item_id)});
+  }
+
+  void handleItemAddition(String item_text) {
+    if (item_text.replaceAll(' ', '') == '') {
+      return;
+    }
+    setState(() => {
+          list.add(new itemToDo(
+            ID: DateTime.now().millisecondsSinceEpoch.toString(),
+            text: item_text.trim(),
+          ))
+        });
+    _to_do_Controller.clear();
   }
 
   void handleToDoItemChange(itemToDo item) {
@@ -65,6 +79,7 @@ class _HomeState extends State<Home> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextField(
+                    controller: _to_do_Controller,
                     decoration: InputDecoration(
                       hintText: 'Enter new ToDo task here',
                       border: InputBorder.none,
@@ -76,7 +91,7 @@ class _HomeState extends State<Home> {
                 right: 20,
               ),
               child: ElevatedButton(
-                onPressed: () => {},
+                onPressed: () => handleItemAddition(_to_do_Controller.text),
                 child: Text('+', style: new TextStyle(fontSize: 35)),
                 style: ElevatedButton.styleFrom(
                   primary: tdGrey,
