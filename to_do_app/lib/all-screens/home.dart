@@ -143,7 +143,11 @@ class _HomeState extends State<Home> {
             margin: EdgeInsets.only(top: 50, bottom: 20),
             child: Text(
               "To-Do Items!",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w500,
+                color: (is_dark_mode) ? tdBGColor : Colors.black,
+              ),
             )),
         for (itemToDo todo1 in foundits
             .reversed) //reversed so that that items can follow FILO order, more convenient for the user(I think)
@@ -191,7 +195,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(
-              Icons.menu,
+              Icons.account_circle_rounded,
               color: tdBlue,
               size: 30,
             ),
@@ -199,12 +203,20 @@ class _HomeState extends State<Home> {
                 height: 40,
                 width: 40,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: IconButton(
-                      icon: Icon(Icons.format_paint_rounded),
-                      color: Colors.blue.shade400,
-                      onPressed: () => {switchColorScheme()}),
-                ))
+                    borderRadius: BorderRadius.circular(30),
+                    child: Tooltip(
+                      textStyle: TextStyle(
+                        fontSize: 13,
+                      ),
+                      preferBelow: true,
+                      message: "Light Mode",
+                      child: IconButton(
+
+                          //tooltip: 'Light/Dark mode',
+                          icon: Icon(Icons.format_paint_rounded),
+                          color: Colors.blue.shade400,
+                          onPressed: () => {switchColorScheme()}),
+                    )))
           ],
         ));
   }
