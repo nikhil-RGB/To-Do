@@ -6,8 +6,10 @@ class item extends StatelessWidget {
   final onItemChanged;
   final onItemDeletion;
   final itemToDo todo;
+  final bool c_mode;
   const item(
       {Key? key,
+      required this.c_mode,
       required this.todo,
       required this.onItemDeletion,
       required this.onItemChanged})
@@ -21,7 +23,7 @@ class item extends StatelessWidget {
           onTap: () => {onItemChanged(todo)},
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          tileColor: tdGrey,
+          tileColor: (c_mode) ? items_dark : tdGrey,
           leading: Icon(
             todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
             color: tdBlack,

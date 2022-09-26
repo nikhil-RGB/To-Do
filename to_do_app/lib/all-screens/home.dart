@@ -9,14 +9,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool is_dark_mode =
+      false; //mode controls transition between light mode and dark mode.
+  //dark mode is denoted by true true, light mode is denoted by false.
   final _to_do_Controller = TextEditingController();
   List<itemToDo> foundits = [];
   final List<itemToDo> list = itemToDo.generateDefaultList();
 
   @override
   void initState() {
+    is_dark_mode = false;
     foundits = list;
     super.initState();
+  }
+
+  void switchColorScheme() {
+    //switches between light mode and dark mode
+    setState(() {
+      is_dark_mode = !is_dark_mode;
+    });
   }
 
   void handleItemDeletion(String item_id) {
@@ -60,7 +71,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: alternative,
+      backgroundColor: (is_dark_mode) ? blackMain : alternative,
       appBar: buildBar(),
       //appBar: AppBar(),
       body: Stack(children: [
@@ -140,6 +151,7 @@ class _HomeState extends State<Home> {
             todo: todo1,
             onItemChanged: handleToDoItemChange,
             onItemDeletion: handleItemDeletion,
+            c_mode: is_dark_mode,
           )
       ]),
     );
@@ -188,10 +200,10 @@ class _HomeState extends State<Home> {
                 width: 40,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: Icon(
-                    Icons.account_circle_rounded,
-                    color: Colors.blue.shade400,
-                  ),
+                  child: IconButton(
+                      icon: Icon(Icons.format_paint_rounded),
+                      color: Colors.blue.shade400,
+                      onPressed: () => {switchColorScheme()}),
                 ))
           ],
         ));
