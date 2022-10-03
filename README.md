@@ -9,7 +9,10 @@ This repository will be used for the SRM-Killzilla recruitment!
 
 **ToDo List**: Living a happening college life is not easy. There are so many assignments, appointments and fun stuff to do. Create a todo list app to manage all your tasks.
 
+
+
 **Suggested Tasks**:
+
 
 This project will test you App skills.
 You have to create a ToDo list app which stores the data, and allows the user to create a new todo item, delete and update it.
@@ -24,3 +27,19 @@ Your application needs to have a fully functional dark mode.
 **Additional Notes**:
 
 You need to upload the apk to drive and source code to GitHub. A proper README is also a must.
+
+
+
+### Project Preview:
+
+<br>
+
+
+![snap](https://user-images.githubusercontent.com/68727041/192158417-95bfc866-4a84-46f3-bd91-afe885a70f42.png)
+
+### Notes:
+
+1) The app has some values hard-coded on start, these can easily be changed with the functionalities provided.
+2) As of now, I do not know how to connect my app to a backend, but am in the process of learning app development thorougly- therefore the tasks inputted will not          persist once the app is closed.<br>
+3) Thank you to Killzilla for this wonderful learning oppurtunity!!
+
