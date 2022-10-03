@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:to_do_app/all-const/colors.dart';
 import 'package:to_do_app/model/itemToDo.dart';
 import 'package:to_do_app/widgets/item.dart';
@@ -194,10 +195,13 @@ class _HomeState extends State<Home> {
         title: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              Icons.account_circle_rounded,
-              color: tdBlue,
-              size: 30,
+            IconButton(
+              icon: Icon(
+                Icons.exit_to_app_rounded,
+                color: tdBlue,
+                size: 30,
+              ),
+              onPressed: () => {SystemNavigator.pop()},
             ),
             Container(
                 height: 40,
