@@ -34,4 +34,14 @@ class itemToDo {
     }
     return false;
   }
+
+  Map toJson() => {
+        'ID': ID,
+        'text': text,
+        'isDone': isDone,
+      };
+
+  factory itemToDo.fromJson(dynamic json) {
+    return itemToDo(ID: json['ID'], text: json['text'], isDone: json['isDone']);
+  }
 }

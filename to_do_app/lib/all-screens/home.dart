@@ -1,8 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:to_do_app/all-const/colors.dart';
 import 'package:to_do_app/model/itemToDo.dart';
 import 'package:to_do_app/widgets/item.dart';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,13 +22,62 @@ class _HomeState extends State<Home> {
   //dark mode is denoted by true true, light mode is denoted by false.
   final _to_do_Controller = TextEditingController();
   List<itemToDo> foundits = [];
-  final List<itemToDo> list = itemToDo.generateDefaultList();
+  List<itemToDo> list = [];
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/items.txt');
+  }
+
+  Future<String> readItems() async {
+    try {
+      final file = await _localFile;
+
+      // Read the file
+      final contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0
+      return 'error';
+    }
+  }
+
+  Future<File> writeItems(String text) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString(text);
+  }
 
   @override
   void initState() {
+    super.initState();
+    String val;
+    Iterable a;
+    _localFile.then((file) => {
+          if (file.existsSync())
+            {
+              readItems().then((items) => {
+                    a = jsonDecode(items),
+                    print('this is a $a'),
+                    list = List<itemToDo>.from(
+                        a.map((val) => itemToDo.fromJson(val))),
+                    print('This the json string $items'),
+                    print("This is the list $list"),
+                  })
+            }
+          else
+            {list = itemToDo.generateDefaultList()},
+        });
     is_dark_mode = false;
     foundits = list;
-    super.initState();
   }
 
   void switchColorScheme() {
@@ -45,6 +101,7 @@ class _HomeState extends State<Home> {
             text: item_text.trim(),
           ))
         });
+    print(list);
     _to_do_Controller.clear();
   }
 
@@ -201,7 +258,10 @@ class _HomeState extends State<Home> {
                 color: tdBlue,
                 size: 30,
               ),
-              onPressed: () => {SystemNavigator.pop()},
+              onPressed: () => {
+                writeItems(jsonEncode(list))
+                    .then((value) => SystemNavigator.pop()),
+              },
             ),
             Container(
                 height: 40,
