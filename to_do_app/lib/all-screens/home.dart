@@ -58,26 +58,32 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    super.initState();
     String val;
     Iterable a;
-    _localFile.then((file) => {
-          if (file.existsSync())
-            {
-              readItems().then((items) => {
-                    a = jsonDecode(items),
-                    print('this is a $a'),
-                    list = List<itemToDo>.from(
-                        a.map((val) => itemToDo.fromJson(val))),
-                    print('This the json string $items'),
-                    print("This is the list $list"),
-                  })
-            }
-          else
-            {list = itemToDo.generateDefaultList()},
-        });
-    is_dark_mode = false;
-    foundits = list;
+    Future.delayed(Duration(seconds: 3), () {
+      _localFile.then((file) => {
+            if (file.existsSync())
+              {
+                readItems().then((items) => {
+                      a = jsonDecode(items),
+                      print('this is a $a'),
+                      list = List<itemToDo>.from(
+                          a.map((val) => itemToDo.fromJson(val))),
+                      print(list[0].text),
+                      print('This the json string $items'),
+                      print("This is the list $list"),
+                    })
+              }
+            else
+              {list = itemToDo.generateDefaultList()},
+            setState(() {
+              is_dark_mode = false;
+              foundits = list;
+            }),
+          });
+    });
+
+    super.initState();
   }
 
   void switchColorScheme() {
@@ -284,4 +290,9 @@ class _HomeState extends State<Home> {
           ],
         ));
   }
+}
+
+specialPrint(value) {
+  print(value);
+  return value;
 }
