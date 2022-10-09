@@ -91,6 +91,7 @@ class _HomeState extends State<Home> {
 
   void handleItemDeletion(String item_id) {
     setState(() => {list.removeWhere((element) => element.ID == item_id)});
+    writeItems(jsonEncode(list));
   }
 
   void handleItemAddition(String item_text) {
@@ -105,12 +106,14 @@ class _HomeState extends State<Home> {
         });
     print(list);
     _to_do_Controller.clear();
+    writeItems(jsonEncode(list));
   }
 
   void handleToDoItemChange(itemToDo item) {
     setState(() {
       item.isDone = !item.isDone;
     });
+    writeItems(jsonEncode(list));
   }
 
   void runFilter(String userEntry) {
