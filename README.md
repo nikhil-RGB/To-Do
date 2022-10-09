@@ -41,11 +41,3 @@ You need to upload the apk to drive and source code to GitHub. A proper README i
 
 ![app-dark-mode](https://user-images.githubusercontent.com/68727041/193508464-aa82296f-a05a-49a7-81d3-d4f6f1d8086f.png)
 
-
-### Notes:
-
-1) The app has some values hard-coded on start, these can easily be changed with the functionalities provided.
-2) As of now, I do not know how to connect my app to a backend, but am in the process of learning app development thorougly- therefore the tasks inputted will not          persist once the app is closed.<br>
-3) Thank you to Killzilla for this wonderful learning oppurtunity!!
-4) The Bonus-Tasks branch contains work which is aimed at improving the app and adding new features- once these are tested, the changes will be rebased on top of the      main branch.
-
