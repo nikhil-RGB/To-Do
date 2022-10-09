@@ -56,33 +56,29 @@ class _HomeState extends State<Home> {
     return file.writeAsString(text);
   }
 
-  @override
-  void initState() {
+  setUpTodos() async {
     String val;
     Iterable a;
-    Future.delayed(Duration(seconds: 3), () {
-      _localFile.then((file) => {
-            if (file.existsSync())
-              {
-                readItems().then((items) => {
-                      a = jsonDecode(items),
-                      print('this is a $a'),
-                      list = List<itemToDo>.from(
-                          a.map((val) => itemToDo.fromJson(val))),
-                      print(list[0].text),
-                      print('This the json string $items'),
-                      print("This is the list $list"),
-                    })
-              }
-            else
-              {list = itemToDo.generateDefaultList()},
-            setState(() {
-              is_dark_mode = false;
-              foundits = list;
-            }),
-          });
-    });
+    List<itemToDo> ltemp = [];
+    File file = await _localFile;
+    if (file.existsSync()) {
+      String items = await readItems();
 
+      a = jsonDecode(items);
+      ltemp = List<itemToDo>.from(a.map((val) => itemToDo.fromJson(val)));
+    } else {
+      list = itemToDo.generateDefaultList();
+    }
+    setState(() {
+      list = ltemp;
+      is_dark_mode = false;
+      foundits = list;
+    });
+  }
+
+  @override
+  void initState() {
+    setUpTodos();
     super.initState();
   }
 
