@@ -1,4 +1,4 @@
-# SRM-killzilla-Task
+# SRM-kzilla-Task
 
 ![killzilla](https://user-images.githubusercontent.com/68727041/191717722-4c9a209f-20eb-4123-963a-23b6087ee066.png)
 
